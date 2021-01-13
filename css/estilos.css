@@ -1,0 +1,36 @@
+.clase{
+    background-color: yellow;
+
+}
+
+/* fondo vacio */
+.vacio{
+    background-color: #130f40;
+}
+#primera{
+    background-color:#30336b ;
+}
+#segunda{
+    background-color: #130f40;
+}
+h4{
+    color: white;
+}
+h3{
+    color: #c7ecee;
+}
+footer {
+	background-color:#1A1A1A;
+	height: 50%;
+    color: white;
+    padding: 15px;
+}
+
+.main1 { 
+    display:flex;
+    margin:0 auto;
+}
+
+a img:hover {
+    color: #fff;
+}

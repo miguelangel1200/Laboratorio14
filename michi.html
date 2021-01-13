@@ -1,0 +1,403 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+
+<head> 
+	<meta charset="utf-8" /> 
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" /> 
+
+	<script src= "https://code.jquery.com/jquery-3.4.1.slim.min.js"> 
+	</script> 
+	<link rel="stylesheet" href= "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> 
+	<script src= "https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"> 
+	</script> 
+	<link rel="stylesheet" href= "https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+		integrity= "sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+		crossorigin="anonymous"> 
+	<!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<!-- Applying CSS Properties --> 
+<style> 
+	#inicio2 { 
+		background-color: black; 
+	} 
+
+	button { 
+		height: 80px; 
+		width: 80px; 
+		background-color: white; 
+		border: 0px transparent; 
+		border-radius: 50%; 
+		margin: 4px; 
+		padding: 4px; 
+	} 
+
+	.fa { 
+		font-size: 48px; 
+		color: black; 
+	} 
+
+	.reset { 
+		padding: 8px; 
+	} 
+
+	.reset:hover { 
+		opacity: 0.8; 
+	} 
+	#titulo{
+		background-color: #30336b;
+	}
+	#pie{
+		background-color:#30336b ;
+	}
+	#nombres{
+		color: black;
+	}
+	footer{
+    margin-top:160px;
+    width:100%;
+    height:100px;
+	}
+
+</style> 
+
+
+</head> 
+
+<body> 
+	
+	<!-- Heading -->
+	<div class="container" id="inicio2">
+		<div class="container-fluid text-center" id="titulo"> 
+			<h1 style="color: white;"  class="py-3">TIC-TAC-TOE</h1></div> 
+		<br> 
+		<br> 
+		<div class="container-fluid text-center"> 
+			
+			<!-- Inform area for player's turn -->
+			<h4 id="screen" style="color: white;"> 
+			Jugador 1 Empieza 
+			</h4> 
+		</div> 
+		<br> 
+		<div class="container-fluid py-5"> 
+			<div class="row"> 
+				<div class="col-lg-4">  </div> 
+				<div class="col-lg-4"> 
+					<!-- Playing Canvas -->
+					<center> 
+						<table> 
+							<tr> 
+								<td colspan="3"> 
+							</tr> 
+							<tr> 
+								<td> 
+									<button class="sq1 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq2 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq3 r"></button> 
+								</td> 
+							</tr> 
+							<tr> 
+								<td> 
+									<button class="sq4 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq5 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq6 r"></button> 
+								</td> 
+							</tr> 
+							<tr> 
+								<td> 
+									<button class="sq7 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq8 r"></button> 
+								</td> 
+								<td> 
+									<button class="sq9 r"></button> 
+								</td> 
+							</tr> 
+						</table> 
+						<br> 
+						<br> 
+						
+						<!-- Repetir el juego -->
+						<input type="button"
+							class="reset btn btn-lg btn-danger btn-block"
+							value="Jugar otra vez" onClick="reset()" /> 
+					</center> 
+				</div> 
+				<div class="col-lg-4">  </div> 
+			</div> 
+		</div>
+		<section class="container py-2">
+            <footer id="pie">
+              <div class="container">
+                <h5 class="text-center text-white">Integrantes:</h5>
+                <div class="row">
+                    <div class="col-xs-12 ">
+                        <h2 class="text-center" id="nombres">- Turín Schraff, Darío José</h2>
+						<h2 class="text-center" id="nombres">- Medina Ventura, Miguel Angel</h2>
+                    </div>
+              </div>
+              <div class="text-center">
+                <h7 class="text-center text-white">Todos los derechos reservados @2021</h7> 
+            </div> 
+            </div>
+            </footer>
+          </section>
+	</div>
+	 
+</body>
+
+<!-- Consecutive player Turns --> 
+// Flag variable for checking Turn 
+// We'll be modifying our base logic in the 
+// next steps as per requirements	 
+<script> 
+
+
+
+    var turn = 1; 
+    var ganar=0;
+    $("button").click(function() { 
+        if (ganar ==0){
+			if(turn == 1) { 
+				
+				
+				if($(this).hasClass("fa fa-times")) 
+				{	 
+					$("#screen").text("Jugador 1 Marca el siguiente");
+					$(this).css("background-color", "red"); 
+					setTimeout(() => { 
+						$(this).css("background-color", "white"); 
+					}, 800);
+					turn=1;		 
+				}
+				else{
+					$("#screen").text("Jugador 2 Marca el siguiente");
+					// Check sign font from font-awesome 
+					$(this).addClass("fa fa-check"); 
+						turn = 2;
+					}			 
+			} 
+			else {	 
+				
+				if($(this).hasClass("fa fa-check")) 
+				{	 
+					$("#screen").text("Jugador 2 Marca el siguiente");
+					$(this).css("background-color", "red"); 
+					setTimeout(() => { 
+						$(this).css("background-color", "white"); 
+					}, 800);
+					turn = 2;		 
+				}
+				else{
+				$("#screen").text("Jugador 1 Marca el siguiente");// Cross sign font from font-awesome 
+				$(this).addClass("fa fa-times"); 
+				turn = 1;
+				} 
+        	}
+    }
+    else{
+        $("#screen").text("Ganó");
+    }
+        
+        
+
+});
+
+
+$("button").click(function() { 
+//   <!-- Function to check the winning move --> 
+// function check(symbol) { 
+	if ($(".sq1").hasClass("fa fa-check") && 
+		$(".sq2").hasClass("fa fa-check") && 
+		$(".sq3").hasClass("fa fa-check")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq2").css("color", "green"); 
+        $(".sq3").css("color", "green");
+		ganar=1;
+		$("#screen").text("Ganó");
+        
+		 
+	} else if ($(".sq4").hasClass("fa fa-check") 
+			&& $(".sq5").hasClass("fa fa-check") 
+			&& $(".sq6").hasClass("fa fa-check")) 
+	{ 
+		$(".sq4").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq6").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó");
+	} else if ($(".sq7").hasClass("fa fa-check") 
+			&& $(".sq8").hasClass("fa fa-check") 
+			&& $(".sq9").hasClass("fa fa-check")) 
+	{ 
+		$(".sq7").css("color", "green"); 
+		$(".sq8").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq1").hasClass("fa fa-check") 
+			&& $(".sq4").hasClass("fa fa-check") 
+			&& $(".sq7").hasClass("fa fa-check")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq4").css("color", "green"); 
+		$(".sq7").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq2").hasClass("fa fa-check") 
+			&& $(".sq5").hasClass("fa fa-check") 
+			&& $(".sq8").hasClass("fa fa-check")) 
+	{ 
+		$(".sq2").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq8").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq3").hasClass("fa fa-check") 
+			&& $(".sq6").hasClass("fa fa-check") 
+			&& $(".sq9").hasClass("fa fa-check")) 
+	{ 
+		$(".sq3").css("color", "green"); 
+		$(".sq6").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq1").hasClass("fa fa-check") 
+			&& $(".sq5").hasClass("fa fa-check") 
+			&& $(".sq9").hasClass("fa fa-check")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq3").hasClass("fa fa-check") 
+			&& $(".sq5").hasClass("fa fa-check") 
+			&& $(".sq7").hasClass("fa fa-check")) 
+	{ 
+		$(".sq3").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq7").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó");
+	}
+	
+	// GANA Jugador 2
+
+	else if ($(".sq1").hasClass("fa fa-times") && 
+		$(".sq2").hasClass("fa fa-times") && 
+		$(".sq3").hasClass("fa fa-times")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq2").css("color", "green"); 
+        $(".sq3").css("color", "green");
+		ganar=1;
+		$("#screen").text("Ganó");
+        
+		 
+	} else if ($(".sq4").hasClass("fa fa-times") 
+			&& $(".sq5").hasClass("fa fa-times") 
+			&& $(".sq6").hasClass("fa fa-times")) 
+	{ 
+		$(".sq4").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq6").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó");
+	} else if ($(".sq7").hasClass("fa fa-times") 
+			&& $(".sq8").hasClass("fa fa-times") 
+			&& $(".sq9").hasClass("fa fa-times")) 
+	{ 
+		$(".sq7").css("color", "green"); 
+		$(".sq8").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq1").hasClass("fa fa-times") 
+			&& $(".sq4").hasClass("fa fa-times") 
+			&& $(".sq7").hasClass("fa fa-times")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq4").css("color", "green"); 
+		$(".sq7").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq2").hasClass("fa fa-times") 
+			&& $(".sq5").hasClass("fa fa-times") 
+			&& $(".sq8").hasClass("fa fa-times")) 
+	{ 
+		$(".sq2").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq8").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq3").hasClass("fa fa-times") 
+			&& $(".sq6").hasClass("fa fa-times") 
+			&& $(".sq9").hasClass("fa fa-times")) 
+	{ 
+		$(".sq3").css("color", "green"); 
+		$(".sq6").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq1").hasClass("fa fa-times") 
+			&& $(".sq5").hasClass("fa fa-times") 
+			&& $(".sq9").hasClass("fa fa-times")) 
+	{ 
+		$(".sq1").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq9").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó"); 
+	} else if ($(".sq3").hasClass("fa fa-times") 
+			&& $(".sq5").hasClass("fa fa-times") 
+			&& $(".sq7").hasClass("fa fa-times")) 
+	{ 
+		$(".sq3").css("color", "green"); 
+		$(".sq5").css("color", "green"); 
+		$(".sq7").css("color", "green"); 
+		ganar=1;
+		$("#screen").text("Ganó");
+	} else { 
+		return false; 
+	}
+
+});
+
+
+// <!-- Resetting the game --> 
+function reset() 
+{ 
+$("#screen").text("Jugador 1 marca el siguiente"); 
+$("#screen").css("background-color", "transparent"); 
+$(".r").removeClass("fa fa-check"); 
+$(".r").removeClass("fa fa-times"); 
+turn=1;
+ganar=0; 
+
+// Reset Colors 
+$(".sq1").css("color", "black"); 
+$(".sq2").css("color", "black"); 
+$(".sq3").css("color", "black"); 
+$(".sq4").css("color", "black"); 
+$(".sq5").css("color", "black"); 
+$(".sq6").css("color", "black"); 
+$(".sq7").css("color", "black"); 
+$(".sq8").css("color", "black"); 
+$(".sq9").css("color", "black"); 
+
+} 
+    </script> 
+    
+
+</html> 
